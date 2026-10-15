@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+:root {
+  /* Aquatic Neumorphism (Light: Crisp Seafoam / Glacial Water) */
+  --bg: #E3EDF0;
+  --surface: #E3EDF0;
+  --text-primary: #12232E;
+  --text-secondary: #486573;
+  --text-muted: #829BA8;
+  --accent: #0284C7;
+  --accent-hover: #0369A1;
+  --accent-glow: rgba(2, 132, 199, 0.35);
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #F43F5E;
+
+  /* Neumorphic Shadows - Crisp Aquatic Cast & Highlights */
+  --shadow-raised-xl: 18px 18px 36px rgba(160, 183, 191, 0.55), -18px -18px 36px rgba(255, 255, 255, 0.95);
+  --shadow-raised-lg: 12px 12px 24px rgba(160, 183, 191, 0.5), -12px -12px 24px rgba(255, 255, 255, 0.9);
+  --shadow-raised-md: 8px 8px 18px rgba(160, 183, 191, 0.45), -8px -8px 18px rgba(255, 255, 255, 0.85);
+  --shadow-raised-sm: 4px 4px 10px rgba(160, 183, 191, 0.4), -4px -4px 10px rgba(255, 255, 255, 0.85);
+  --shadow-raised-hover: 14px 14px 28px rgba(150, 175, 185, 0.6), -14px -14px 28px rgba(255, 255, 255, 1);
+  
+  --shadow-pressed: inset 4px 4px 8px rgba(160, 183, 191, 0.55), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  --shadow-inset-sm: inset 3px 3px 6px rgba(160, 183, 191, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.85);
+  --shadow-inset-md: inset 5px 5px 10px rgba(160, 183, 191, 0.5), inset -5px -5px 10px rgba(255, 255, 255, 0.9);
+  --shadow-inset-deep: inset 7px 7px 14px rgba(160, 183, 191, 0.55), inset -7px -7px 14px rgba(255, 255, 255, 0.95);
+  
+  --shadow-accent-btn: 6px 6px 18px rgba(2, 132, 199, 0.35), -5px -5px 14px rgba(255, 255, 255, 0.85);
+  --shadow-accent-pressed: inset 4px 4px 8px rgba(2, 70, 110, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.35);
+
+  --radius-xl: 32px;
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 9999px;
+
+  --transition-tactile: all 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  /* Aquatic Abyssal Trench (Deep Marine Night) */
+  --bg: #0C171E;
+  --surface: #0C171E;
+  --text-primary: #E6F3F7;
+  --text-secondary: #7FA3B5;
+  --text-muted: #415A68;
+  --accent: #38BDF8;
+  --accent-hover: #0EA5E9;
+  --accent-glow: rgba(56, 189, 248, 0.45);
+
+  --shadow-raised-xl: 18px 18px 36px rgba(3, 7, 10, 0.9), -18px -18px 36px rgba(22, 42, 54, 0.65);
+  --shadow-raised-lg: 12px 12px 24px rgba(3, 7, 10, 0.85), -12px -12px 24px rgba(22, 42, 54, 0.6);
+  --shadow-raised-md: 7px 7px 16px rgba(3, 7, 10, 0.8), -7px -7px 16px rgba(22, 42, 54, 0.55);
+  --shadow-raised-sm: 4px 4px 10px rgba(3, 7, 10, 0.75), -4px -4px 10px rgba(22, 42, 54, 0.5);
+  --shadow-raised-hover: 14px 14px 28px rgba(2, 5, 8, 0.95), -14px -14px 28px rgba(26, 50, 64, 0.75);
+  
+  --shadow-pressed: inset 4px 4px 8px rgba(3, 7, 10, 0.85), inset -4px -4px 8px rgba(22, 42, 54, 0.5);
+  --shadow-inset-sm: inset 3px 3px 6px rgba(3, 7, 10, 0.75), inset -3px -3px 6px rgba(22, 42, 54, 0.45);
+  --shadow-inset-md: inset 5px 5px 10px rgba(3, 7, 10, 0.8), inset -5px -5px 10px rgba(22, 42, 54, 0.5);
+  --shadow-inset-deep: inset 7px 7px 14px rgba(2, 5, 8, 0.9), inset -7px -7px 14px rgba(20, 38, 50, 0.55);
+  
+  --shadow-accent-btn: 6px 6px 18px rgba(56, 189, 248, 0.4), -4px -4px 12px rgba(24, 46, 60, 0.6);
+  --shadow-accent-pressed: inset 4px 4px 8px rgba(12, 60, 90, 0.7), inset -3px -3px 6px rgba(255, 255, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 300ms ease, color 300ms ease;
+  user-select: none;
+}
+
+/* Subtle water ripple background illumination */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 10%, rgba(2, 132, 199, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] body::before {
+  background: radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.04), transparent 70%);
+}
+
+/* Neumorphic tactile utility classes */
+.nm-flat {
+  background-color: var(--surface);
+}
+
+.nm-raised-xl {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-raised-xl);
+  border-radius: var(--radius-xl);
+}
+
+.nm-raised-lg {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-raised-lg);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-tactile);
+}
+
+.nm-raised-lg:hover {
+  box-shadow: var(--shadow-raised-hover);
+  transform: translateY(-2px);
+}
+
+.nm-raised-md {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-raised-md);
+  border-radius: var(--radius-md);
+  transition: var(--transition-tactile);
+}
+
+.nm-raised-sm {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-raised-sm);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-tactile);
+}
+
+.nm-inset-sm {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-inset-sm);
+  border-radius: var(--radius-sm);
+}
+
+.nm-inset-md {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-inset-md);
+  border-radius: var(--radius-md);
+}
+
+.nm-inset-pill {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-inset-sm);
+  border-radius: var(--radius-pill);
+}
+
+/* Primary Tactile Button (Ocean wave gradient) */
+.nm-btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #06B6D4 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: var(--shadow-accent-btn);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-tactile);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nm-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1.5px);
+  box-shadow: 8px 8px 22px rgba(2, 132, 199, 0.45), -6px -6px 18px rgba(255, 255, 255, 0.9);
+}
+
+.nm-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-accent-pressed);
+}
+
+/* Secondary Tactile Button (Surface molded) */
+.nm-btn-secondary {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-raised-md);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-tactile);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.nm-btn-secondary:hover {
+  box-shadow: var(--shadow-raised-hover);
+  color: var(--accent);
+  transform: translateY(-1.5px);
+}
+
+.nm-btn-secondary:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+  color: var(--accent-hover);
+}
+
+/* Tactile inputs */
+.nm-input {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-inset-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  outline: none;
+  transition: var(--transition-tactile);
+  font-family: inherit;
+}
+
+.nm-input:focus {
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: var(--shadow-inset-deep), 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* Progress track (Aquatic current) */
+.nm-progress-track {
+  background-color: var(--surface);
+  box-shadow: var(--shadow-inset-sm);
+  border-radius: var(--radius-pill);
+  position: relative;
+  overflow: hidden;
+}
+
+.nm-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0284C7 0%, #06B6D4 50%, #38BDF8 100%);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 14px var(--accent-glow);
+  transition: width 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #b5c7d0;
+  border-radius: 4px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1e3644;
+}
